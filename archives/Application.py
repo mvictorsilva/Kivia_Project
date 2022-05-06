@@ -4,143 +4,8 @@ from PySide2.QtWidgets import *
 from PySide2.QtCore import *
 from PySide2 import QtGui
 from PySide2.QtGui import QIcon
-
-###Import DataBase
-import mysql.connector
-
-###Import gerate code and send email verification
-from email.mime.multipart import MIMEMultipart
-from email.mime.text import MIMEText
-import smtplib
-import random
-
-class SendEmail():
-    def gerate_number(self):
-        self.code_verification = random.randrange(0, 9999)
-
-    def frame_confirmation_email(self):
-        self.frame_email = QFrame(self.cadastre_frame)
-        self.cadastreFrame.move(0, 0)
-        self.cadastreFrame.setGeometry(0, 0, 1080, 720)
-        self.cadastreFrame.show()
-
-    def send_mail(self):
-        self.gerate_number()
-        self.variables_cadastre()
-        ###Varianble email
-
-        try:
-            self.email = self.emailEntry.text()
-
-
-            self.msg = MIMEMultipart()
-            self.message = (f'Olá {self.name}!\n\nSeu código de verificação é ' + f'{self.code_verification}.')
-
-            self.password = 'steelseries'
-            self.msg['From'] = 'testiktok111@gmail.com'
-            self.msg['To'] = f'{self.email}'
-            self.msg['Subject'] = 'Código de verifição Oficina Corpo e Movimento'
-
-            self.msg.attach(MIMEText(self.message, 'plain'))
-            self.server = smtplib.SMTP('smtp.gmail.com', port=587)
-            self.server.starttls()
-            self.server.login(self.msg['From'], self.password)
-            self.server.sendmail(self.msg['From'], self.msg['To'], self.msg.as_string())
-            self.server.quit()
-        except:
-            print('error')
-
-class DataBase(SendEmail):
-    def connect_db(self):
-        self.connect = mysql.connector.connect(
-            host = 'localhost',
-            database = 'projeto_kivia_testes',
-            user = 'root'
-        )
-        self.cursor = self.connect.cursor()
-
-    def disconnect_db(self):
-        self.connect.close()
-
-    def variables_cadastre(self):
-        self.name = self.nameEntry.text()
-        self.surname = self.surnameEntry.text()
-        self.email = self.emailEntry.text()
-        self.password = self.passwordEntry.text()
-
-    def variables_login(self):
-        self.email_login = self.emailEntry_login.text()
-        self.password_login = self.passwordEntry_login_frame.text()
-
-    def clear_entrys_cadastre(self):
-        self.nameEntry.clear()
-        self.surnameEntry.clear()
-        self.emailEntry.clear()
-        self.passwordEntry.clear()
-
-    def clear_entrys_login(self):
-        self.emailEntry_login.clear()
-        self.passwordEntry_login_frame.clear()
-
-    def create_user(self):
-        self.connect_db()
-        self.variables_cadastre()
-
-        if self.name == '':
-            print('escreva alguma coisa')
-
-        elif self.surname == '':
-            print('escreva alguma coisa')
-
-        elif self.email == '':
-            print('escreva alguma coisa')
-
-        elif self.password == '':
-            print('escreva alguma coisa')
-
-        else:
-
-            self.cursor.execute("""
-                insert into clientes(nome_cliente, sobrenome_cliente, email, senha)
-                values(%s, %s, %s, %s)
-            """,
-            (
-                self.name,
-                self.surname,
-                self.email,
-                self.password
-            ))
-
-            self.send_mail()
-            self.clear_entrys_cadastre()
-            self.connect.commit()
-        self.disconnect_db()
-
-    def confirmation_user(self):
-        self.connect_db()
-        self.variables_login()
-
-        if self.email_login == '':
-            print('user and password incorrect')
-            self.clear_entrys_login()
-        elif self.password_login == '':
-            print('user and password incorrect')
-            self.clear_entrys_login()
-        else:
-        
-            self.cursor.execute(f"""
-                select senha from clientes where email = '{self.email_login}'
-            """)
-            self.passaword_db = self.cursor.fetchall()
-
-            if self.password_login == self.passaword_db[0][0]:
-                print('cadastro')
-            else:
-                print('no user')
-
-            self.clear_entrys_login()
-            self.connect.commit()
-        self.disconnect_db()
+from database import DataBase
+ 
 
 class MainWindow(QWidget, DataBase):
 
@@ -201,12 +66,11 @@ class MainWindow(QWidget, DataBase):
 
     def loadEveryThingInCadastreFrame (self):
 
-        
+
         ###################################
         #    Load Cadastre Frame Entrys   #
         ###################################
         self.cadastrePageEntrys()
-        
 
         ###################################
         #    Load Cadastre Frame Labels   #
@@ -279,15 +143,7 @@ class MainWindow(QWidget, DataBase):
         self.wellcomePhraseLabel = QLabel(self.wellcomeFrame)
         self.wellcomePhraseLabel.setText('BEM VINDO A OFICINA')
         self.wellcomePhraseLabel.setGeometry(200, 320, 700, 100)
-        self.wellcomePhraseLabel.setStyleSheet(
-            '''
-                font-family: gotham;
-                font-weight: bold;
-                font-size: 55px;
-                background: none;
-                color: #00f0ff;
-            '''
-        )
+        self.wellcomePhraseLabel.setStyleSheet('font-family: gotham; font-weight: bold; font-size: 55px; background: none; color: #00f0ff;')
 
         ##############################
         #  Label For The White Logo  #
@@ -611,6 +467,7 @@ class MainWindow(QWidget, DataBase):
         self.setMaximumSize(1080, 720)
         self.setMinimumSize(600, 400)
         self.show()
+
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)
