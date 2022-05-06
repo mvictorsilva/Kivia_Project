@@ -1,9 +1,9 @@
 ###Imports window
 import sys
-from PyQt6.QtWidgets import *
-from PyQt6.QtCore import *
-from PyQt6 import QtGui
-from PyQt6.QtGui import QIcon
+from PySide2.QtWidgets import *
+from PySide2.QtCore import *
+from PySide2 import QtGui
+from PySide2.QtGui import QIcon
 
 ###Import DataBase
 import mysql.connector
@@ -201,12 +201,12 @@ class MainWindow(QWidget, DataBase):
 
     def loadEveryThingInCadastreFrame (self):
 
-        '''
+        
         ###################################
         #    Load Cadastre Frame Entrys   #
         ###################################
         self.cadastrePageEntrys()
-        '''
+        
 
         ###################################
         #    Load Cadastre Frame Labels   #
@@ -279,7 +279,15 @@ class MainWindow(QWidget, DataBase):
         self.wellcomePhraseLabel = QLabel(self.wellcomeFrame)
         self.wellcomePhraseLabel.setText('BEM VINDO A OFICINA')
         self.wellcomePhraseLabel.setGeometry(200, 320, 700, 100)
-        self.wellcomePhraseLabel.setStyleSheet('font-family: gotham; font-weight: bold; font-size: 55px; background: none; color: #00f0ff;')
+        self.wellcomePhraseLabel.setStyleSheet(
+            '''
+                font-family: gotham;
+                font-weight: bold;
+                font-size: 55px;
+                background: none;
+                color: #00f0ff;
+            '''
+        )
 
         ##############################
         #  Label For The White Logo  #
@@ -604,9 +612,8 @@ class MainWindow(QWidget, DataBase):
         self.setMinimumSize(600, 400)
         self.show()
 
-app = QApplication(sys.argv)
-
-window = MainWindow()
-window.show()
-
-sys.exit(app.exec())
+if __name__ == '__main__':
+    app = QApplication(sys.argv)
+    window = MainWindow()
+    window.show()
+    sys.exit(app.exec_())
