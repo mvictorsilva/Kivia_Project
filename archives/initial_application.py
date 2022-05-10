@@ -8,7 +8,7 @@ from PyQt6.QtGui import QIcon
 from database import DataBase
 
 
-class MainWindow(QWidget, DataBase):
+class InitialWindow(QWidget, DataBase):
 
     def __init__(self):
         super().__init__()
@@ -465,7 +465,6 @@ class MainWindow(QWidget, DataBase):
         # Main Window Configurations #
         ##############################
         self.setWindowTitle('Oficina do Corpo em Movimento')
-        self.setWindowIcon(QIcon('../images/firstPageImages/Icon.png'))
         self.setGeometry(250, 90, 1080, 720)
         self.setMaximumSize(1080, 720)
         self.setMinimumSize(600, 400)
@@ -474,6 +473,6 @@ class MainWindow(QWidget, DataBase):
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)
-    window = MainWindow()
+    window = InitialWindow()
     window.show()
     sys.exit(app.exec())
