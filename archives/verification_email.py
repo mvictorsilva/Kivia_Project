@@ -39,3 +39,4 @@ class SendEmail():
             self.server.quit()
         except:
             print('error')
+            
