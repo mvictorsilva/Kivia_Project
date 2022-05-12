@@ -1,9 +1,9 @@
 ###Imports window
 import sys
-from PyQt6.QtWidgets import *
-from PyQt6.QtCore import *
-from PyQt6 import QtGui
-from PyQt6.QtGui import QIcon
+from PySide2.QtWidgets import *
+from PySide2.QtCore import *
+from PySide2 import QtGui
+from PySide2.QtGui import QIcon
 
 from database import DataBase
 
@@ -241,7 +241,19 @@ class InitialWindow(QWidget, DataBase):
         self.emailEntry_login.setAlignment(Qt.AlignmentFlag.AlignCenter)
         self.emailEntry_login.setMaxLength(100)
         self.emailEntry_login.setPlaceholderText('E-mail')
-        self.emailEntry_login.setStyleSheet('background-color: rgba(0, 0, 0, 0); border: 2px solid #00f0ff; border-radius: 20px; color: gray;')
+        self.emailEntry_login.setStyleSheet(
+            '''
+                QLineEdit{
+                    background-color: rgba(0, 0, 0, 0); 
+                    border: 2px solid #00f0ff; 
+                    border-radius: 20px; 
+                    color: gray;
+                }
+                QLineEdit:pressed{
+                    color: #ffffff;
+                }
+            '''
+        )
         self.emailEntry_login.show()
 
         ##############################
@@ -253,7 +265,19 @@ class InitialWindow(QWidget, DataBase):
         self.passwordEntry_login_frame.setEchoMode(QLineEdit.EchoMode.Password)
         self.passwordEntry_login_frame.setMaxLength(8)
         self.passwordEntry_login_frame.setPlaceholderText('Senha')
-        self.passwordEntry_login_frame.setStyleSheet('background-color: rgba(0, 0, 0, 0); border: 2px solid #00f0ff; border-radius: 20px; color: gray;')
+        self.passwordEntry_login_frame.setStyleSheet((
+            '''
+                QLineEdit{
+                    background-color: rgba(0, 0, 0, 0); 
+                    border: 2px solid #00f0ff; 
+                    border-radius: 20px; 
+                    color: gray;
+                }
+                QLineEdit:pressed{
+                    color: #ffffff;
+                }
+            '''
+        ))
         self.passwordEntry_login_frame.show()
 
     def loginPageButtons(self):
@@ -410,7 +434,19 @@ class InitialWindow(QWidget, DataBase):
         self.nameEntry.setAlignment(Qt.AlignmentFlag.AlignCenter)
         self.nameEntry.setMaxLength(20)
         self.nameEntry.setPlaceholderText('Nome')
-        self.nameEntry.setStyleSheet('background-color: rgba(0, 0, 0, 0); border: 2px solid #00f0ff; border-radius: 20px; color: gray;')
+        self.nameEntry.setStyleSheet(
+            '''
+                QLineEdit{
+                    background-color: rgba(0, 0, 0, 0); 
+                    border: 2px solid #00f0ff; 
+                    border-radius: 20px; 
+                    color: gray;
+                }
+                QLineEdit:pressed{
+                    color: #ffffff;
+                }
+            '''
+        )
         self.nameEntry.show()
 
         ##############################
@@ -421,7 +457,19 @@ class InitialWindow(QWidget, DataBase):
         self.surnameEntry.setAlignment(Qt.AlignmentFlag.AlignCenter)
         self.surnameEntry.setMaxLength(20)
         self.surnameEntry.setPlaceholderText('Sobrenome')
-        self.surnameEntry.setStyleSheet('background-color: rgba(0, 0, 0, 0); border: 2px solid #00f0ff; border-radius: 20px; color: gray;')
+        self.surnameEntry.setStyleSheet(
+            '''
+                QLineEdit{
+                    background-color: rgba(0, 0, 0, 0); 
+                    border: 2px solid #00f0ff; 
+                    border-radius: 20px; 
+                    color: gray;
+                }
+                QLineEdit:pressed{
+                    color: #ffffff;
+                }
+            '''
+        )
         self.surnameEntry.show()
 
         ##############################
@@ -432,7 +480,19 @@ class InitialWindow(QWidget, DataBase):
         self.emailEntry.setAlignment(Qt.AlignmentFlag.AlignCenter)
         self.emailEntry.setMaxLength(100)
         self.emailEntry.setPlaceholderText('E-mail')
-        self.emailEntry.setStyleSheet('background-color: rgba(0, 0, 0, 0); border: 2px solid #00f0ff; border-radius: 20px; color: gray;')
+        self.emailEntry.setStyleSheet(
+            '''
+                QLineEdit{
+                    background-color: rgba(0, 0, 0, 0); 
+                    border: 2px solid #00f0ff; 
+                    border-radius: 20px; 
+                    color: gray;
+                }
+                QLineEdit:pressed{
+                    color: #ffffff;
+                }
+            '''
+        )
         self.emailEntry.show()
 
         ##############################
@@ -444,7 +504,19 @@ class InitialWindow(QWidget, DataBase):
         self.passwordEntry.setEchoMode(QLineEdit.EchoMode.Password)
         self.passwordEntry.setMaxLength(8)
         self.passwordEntry.setPlaceholderText('Senha')
-        self.passwordEntry.setStyleSheet('background-color: rgba(0, 0, 0, 0); border: 2px solid #00f0ff; border-radius: 20px; color: gray;')
+        self.passwordEntry.setStyleSheet(
+            '''
+                QLineEdit{
+                    background-color: rgba(0, 0, 0, 0); 
+                    border: 2px solid #00f0ff; 
+                    border-radius: 20px; 
+                    color: gray;
+                }
+                QLineEdit:pressed{
+                    color: #ffffff;
+                }
+            '''
+        )
         self.passwordEntry.show()
     
     def loadRetunBackButton (self):
@@ -475,4 +547,4 @@ if __name__ == '__main__':
     app = QApplication(sys.argv)
     window = InitialWindow()
     window.show()
-    sys.exit(app.exec())
+    sys.exit(app.exec_())
