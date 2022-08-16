@@ -364,18 +364,18 @@ class MainFrame(QWidget):
                 x = 80
                 y = 430
 
-            self.rectangleLabel = QLabel(self.classesframe)
-            self.rectangleLabel.setGeometry(x, y, 180, 200)
-            self.rectangleLabel.setStyleSheet(
+            self.rectangleButton = QPushButton(self.classesframe)
+            self.rectangleButton.setGeometry(x, y, 180, 200)
+            self.rectangleButton.setStyleSheet(
                 '''
-                    QLabel{
+                    QPushButton{
                         background-image: url(../images/menuFrames/rectangle.png);
                         border-radius: 10px;
                         border: none;
                     }
                 '''
             )
-            self.rectangleLabel.show()
+            self.rectangleButton.show()
 
             x += 300
 
@@ -403,6 +403,48 @@ class MainFrame(QWidget):
             '''
         )
         self.exercicesLabel.show()
+
+        self.trainExercicesButton = QPushButton("Treino do dia", self.exercicesframe)
+        self.trainExercicesButton.setGeometry(50, 130, 450, 150)
+        self.trainExercicesButton.setStyleSheet(
+            '''
+                QPushButton{
+                    background-image: url(../images/menuFrames/rectangle.png);
+                    border-radius: 20px;
+                    border: none;
+                    color: whitesmoke;
+                }
+            '''
+        )
+        self.trainExercicesButton.show()
+
+        self.relationatedExercicesButton = QPushButton("Exercicios relacionados", self.exercicesframe)
+        self.relationatedExercicesButton.setGeometry(50, 350, 450, 150)
+        self.relationatedExercicesButton.setStyleSheet(
+            '''
+                QPushButton{
+                    background-image: url(../images/menuFrames/rectangle.png);
+                    border-radius: 20px;
+                    border: none;
+                    color: whitesmoke;
+                }
+            '''
+        )
+        self.relationatedExercicesButton.show()
+
+        self.rememberExercicesButton = QPushButton("Lembretes", self.exercicesframe)
+        self.rememberExercicesButton.setGeometry(550, 130, 340, 370)
+        self.rememberExercicesButton.setStyleSheet(
+            '''
+                QPushButton{
+                    background-image: url(../images/menuFrames/rectangle.png);
+                    border-radius: 20px;
+                    border: none;
+                    color: whitesmoke;
+                }
+            '''
+        )
+        self.rememberExercicesButton.show()
 
     def mainFrame_five(self):
         self.scheduleframe = QFrame(self.menuBarFrame)
@@ -467,8 +509,140 @@ class MainFrame(QWidget):
         )
         self.profileLabel.show()
 
+        self.profileLabel = QLabel(self.profileframe)
+        self.profileLabel.setGeometry(50, 100, 280, 280)
+        self.profileLabel.setStyleSheet(
+            '''
+                QLabel{
+                    background-image: url(../images/menuFrames/profile.png);
+                    background-repeat: no-repeat;
+                    border: 2px solid #12555c;
+                    border-radius: 140px;
+                }
+            '''
+        )
+        self.profileLabel.show()
+
+        self.profileNameLabel = QLabel("Nome", self.profileframe)
+        self.profileNameLabel.setGeometry(450, 90, 100, 50)
+        self.profileNameLabel.setStyleSheet(
+            '''
+                QLabel{
+                    color: black;
+                    font: bold 15px gothan;
+                    background: none;
+                }
+            '''
+        )
+        self.profileNameLabel.show()
+
+        self.profileEmailLabel = QLabel("E-mail", self.profileframe)
+        self.profileEmailLabel.setGeometry(450, 240, 100, 50)
+        self.profileEmailLabel.setStyleSheet(
+            '''
+                QLabel{
+                    color: black;
+                    font: bold 15px gothan;
+                    background: none;
+                }
+            '''
+        )
+        self.profileEmailLabel.show()
+
+        self.profileNameEntry = QLineEdit(self.profileframe)
+        self.profileNameEntry.setGeometry(450, 170, 200, 35)
+        self.profileNameEntry.setStyleSheet(
+            '''
+                QLineEdit{
+                    background-color: rgba(0, 0, 0, 0);
+                    border-radius: 10px;
+                    border: 2px solid #12555c;
+                }
+            '''
+
+        )
+        self.profileNameEntry.show()
+
+        self.profileSurnametEntry = QLineEdit(self.profileframe)
+        self.profileSurnametEntry.setGeometry(690, 170, 200, 35)
+        self.profileSurnametEntry.setStyleSheet(
+            '''
+                QLineEdit{
+                    background-color: rgba(0, 0, 0, 0);
+                    border-radius: 10px;
+                    border: 2px solid #12555c;
+                }
+            '''
+
+        )
+        self.profileSurnametEntry.show()
+
+        self.profileEmailEntry = QLineEdit(self.profileframe)
+        self.profileEmailEntry.setGeometry(450, 300, 200, 35)
+        self.profileEmailEntry.setStyleSheet(
+            '''
+                QLineEdit{
+                    background-color: rgba(0, 0, 0, 0);
+                    border-radius: 10px;
+                    border: 2px solid #12555c;
+                }
+            '''
+
+        )
+        self.profileEmailEntry.show()
+
+        self.profilePasswordEntry = QLineEdit(self.profileframe)
+        self.profilePasswordEntry.setGeometry(690, 300, 200, 35)
+        self.profilePasswordEntry.setStyleSheet(
+            '''
+                QLineEdit{
+                    background-color: rgba(0, 0, 0, 0);
+                    border-radius: 10px;
+                    border: 2px solid #12555c;
+                }
+            '''
+
+        )
+        self.profilePasswordEntry.show()
+
+        self.profileChangeButton = QPushButton("Alterar", self.profileframe)
+        self.profileChangeButton.setGeometry(120, 400, 150, 35)
+        self.profileChangeButton.setStyleSheet(
+            '''
+                QPushButton{
+                    background-color: #12555c;
+                    border-radius: 15px;
+                    color: whitesmoke;
+                }
+            '''
+        )
+        self.profileChangeButton.show()
+
     def delete(self):
-        self.beginFrame.hide()
+        try:
+            self.beginFrame.hide()
+        except:
+            pass
+        try:
+            self.helthframe.hide()
+        except:
+            pass
+        try:
+            self.classesframe.hide()
+        except:
+            pass
+        try:
+            self.exercicesframe.hide()
+        except:
+            pass
+        try:
+            self.scheduleframe.hide()
+        except:
+            pass
+        try:
+            self.profileframe.hide()
+        except:
+            pass
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)
