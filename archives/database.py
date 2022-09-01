@@ -7,7 +7,7 @@ class DataBase(SendEmail):
     def connect_db(self):
         self.connect = mysql.connector.connect(
             host = 'localhost',
-            database = 'projeto_kivia_testes',
+            database = 'projeto_kivia',
             user = 'root'
         )
         self.cursor = self.connect.cursor()
